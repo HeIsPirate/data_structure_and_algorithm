@@ -81,6 +81,13 @@ public class IndexMinPq<T extends Comparable<T>> {
         this.sink(index);
     }
 
+    public void tryDelete(T item) {
+        Integer index = this.elements.get(item);
+        if (null == index)
+            return;
+        this.delete(item);
+    }
+
     public T delMin() {
         if (this.size == 0) return null;
         T min = this.elementData(0);
@@ -93,7 +100,7 @@ public class IndexMinPq<T extends Comparable<T>> {
     }
 
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     private void sink(int index) {
