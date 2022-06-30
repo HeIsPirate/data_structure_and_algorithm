@@ -67,8 +67,11 @@ public class IndexMinPq<T extends Comparable<T>> {
         this.change(index, to);
     }
 
+
+    /**
+     * 未实现, 这个api干什么用的?
+     */
     boolean contains(int k) {
-        //TODO 这个api干什么用的?
         return false;
     }
 

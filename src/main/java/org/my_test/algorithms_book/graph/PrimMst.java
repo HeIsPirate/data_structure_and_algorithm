@@ -9,6 +9,8 @@ import java.util.Queue;
 /**
  * Prim算法<br>
  * (即时版)
+ * <p></p>
+ * <a href="https://algs4.cs.princeton.edu/43mst/PrimMST.java.html">书上的, 生成`最小生成树森林`</a>, 其他的差不多
  */
 @SuppressWarnings({"DanglingJavadoc"})
 public class PrimMst {
@@ -44,13 +46,17 @@ public class PrimMst {
         vertexMinEdge = new EdgeWeighted[graph.vertexNumber];
         vertexMinEdgeWeight = new Double[graph.vertexNumber];
 
+        // 从0开始, 初始化队列
         this.addNewVertex(graph, 0);
 
         while (!pq.isEmpty()) {
+            /**
+             * 一定是有效边
+             * 因为pq中都是有效横切边, 不需要判断: if (visited[vertexV] && visited[vertexW]) continue;
+             * (在加入pq时已经判断)
+             */
             EdgeWeighted minEdge = pq.delMin();
 
-            // pq中都是有效横切边, 因此不需要判断 (在加入pq时已经判断)
-            // if (visited[vertexV] && visited[vertexW]) continue;
             minWeight += minEdge.getWeight();
             edges.add(minEdge);
 
@@ -102,6 +108,7 @@ public class PrimMst {
             /**
              * 相邻顶点(非树顶点)存在多条横切边
              * 新增树顶点后, `相邻顶点`的`最小横切边`可能变化(有更小的), 因此需要更新pq
+             * 比如: 顶点0,1,2组成的三角形, 从0开始遍历, 则2存在0-2横切边, 然后遍历1, 此时2有两个横切边: 0-2, 1-2
              */
             EdgeWeighted oldMinEdge = vertexMinEdge[adjVertex];
             if (oldMinEdgeWeight > edge.getWeight()) {
