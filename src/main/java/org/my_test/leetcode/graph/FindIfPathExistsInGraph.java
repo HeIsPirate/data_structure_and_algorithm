@@ -16,6 +16,7 @@ public class FindIfPathExistsInGraph {
         if (source == destination)
             return true;
 
+        // 邻接表
         List<Integer>[] adjacencyArray = new List[n];
 
         // 构建图
@@ -65,7 +66,7 @@ public class FindIfPathExistsInGraph {
         if (source == destination)
             return true;
 
-        // 记录顶点的连通分量, 并初始化
+        // 记录顶点的连通分量cc, 并初始化
         int[] vertexCc = new int[n];
         for (int i = 0; i < vertexCc.length; i++) {
             vertexCc[i] = i;
